@@ -1,1 +1,1 @@
-TOKEN ="1990617863:AAGTb5Yrt0aCTNv9A5v1lFYN8c8o2npl-io"
+MOVIE_API ="http://www.omdbapi.com/?i=tt3896198&apikey=c5102565"
