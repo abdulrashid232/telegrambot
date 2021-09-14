@@ -1,6 +1,6 @@
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
-
+from api import Token
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text("Hi! Am a movie bot , type /help of more infor")
@@ -15,7 +15,7 @@ def echo(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
-    updater = Updater("1990617863:AAGTb5Yrt0aCTNv9A5v1lFYN8c8o2npl-io")
+    updater = Updater(Token)
 
 
     dispatcher = updater.dispatcher
