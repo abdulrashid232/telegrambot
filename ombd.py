@@ -1,1 +1,0 @@
-MOVIE_API ="http://www.omdbapi.com/?i=tt3896198&apikey=c5102565"
