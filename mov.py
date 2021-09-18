@@ -3,7 +3,12 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 from api import Token
 
 def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text("Hi! Am a movie bot , type /help of more infor")
+    update.message.reply_text(
+     "Hi! Am a movie bot"
+    + "What can I do?\n\nI  gives brief information about any movie from IMDb website "
+    + "\nSend /rating movie_name to know the genre and rating of the movie.\nSend /search movie_name to"
+    + "get the list of movies with a the same name.\nUse /help if you need any help."
+    + "\nHave fun playing around")
 
  
 def help_command(update: Update, context: CallbackContext) -> None:
