@@ -1,6 +1,10 @@
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
-from api import Token
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+Token = os.getenv("Token")
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
