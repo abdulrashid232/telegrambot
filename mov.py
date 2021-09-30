@@ -1,10 +1,12 @@
 from telegram import Update, ForceReply
+import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from dotenv import load_dotenv
 import os
 load_dotenv()
 
 Token = os.getenv("Token")
+Movie_api = os.getenv("Movie_api")
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
@@ -19,17 +21,13 @@ def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text("This is a movie rating bot, But the bot isn't fully ready")
 
 
-def echo(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(update.message.text)
+
+def rating(update: Update, context: CallbackContext):
+    update.message.reply_text("hELLO")
 
 
-def search(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text("This is a command used to search for movies. NB: still in working progress.......")
 
-def rating(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text("This a command use to get movie ratings from imdb. NB: still in working progress.......")
-
-def main() -> None:
+def main():
     updater = Updater(Token)
 
 
@@ -38,8 +36,8 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
 
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
-    dispatcher.add_handler(CommandHandler("search", search))
+
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, obtener))
     dispatcher.add_handler(CommandHandler("rating", rating))
 
     updater.start_polling()
