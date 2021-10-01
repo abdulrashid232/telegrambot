@@ -49,6 +49,10 @@ def search(update: Update, context: CallbackContext):
 
 
 
+def error(update:Update, context:CallbackContext):
+    update.message.reply_text("An Error occured")
+
+
 
 def main():
     updater = Updater(Token)
@@ -60,6 +64,7 @@ def main():
     dispatcher.add_handler(CommandHandler("help", help_command))
     infor_handler = MessageHandler(Filters.text, search)
     dispatcher.add_handler(infor_handler)
+    dispatcher.add_error_handler(error)
 
     updater.start_polling()
 
