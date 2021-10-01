@@ -11,7 +11,7 @@ Token = os.getenv("Token")
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
      "Hi! Am a movie bot"
-    + "What can I do?\n\nI  gives brief information about any movie from IMDb website "
+    + "What can I do?\n\nI  gives brief information about any movie from OMDb website "
     + "\nSend /rating movie_name to know the genre and rating of the movie.\nSend /search movie_name to"
     + "get the list of movies with a the same name.\nUse /help if you need any help."
     + "\nHave fun playing around")
@@ -22,7 +22,7 @@ def help_command(update: Update, context: CallbackContext) -> None:
 
 
 
-def ratings(update: Update, context: CallbackContext):
+def search(update: Update, context: CallbackContext):
     movie_name = update.message.text
     movie_info =movie_infor(movie_name)
 
@@ -54,8 +54,8 @@ def main():
 
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
-    ratings_handler = MessageHandler(Filters.text, ratings)
-    dispatcher.add_handler(ratings_handler)
+    infor_handler = MessageHandler(Filters.text, search)
+    dispatcher.add_handler(infor_handler)
 
     updater.start_polling()
 
