@@ -1,1 +1,1 @@
-worker: python mov.py  
+web: python mov.py  
