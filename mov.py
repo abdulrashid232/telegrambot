@@ -4,6 +4,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 from dotenv import load_dotenv
 import os
 from omdb import movie_infor
+PORT = int(os.environ.get('PORT',5000))
 
 load_dotenv()
 Token = os.getenv("Token")
@@ -66,8 +67,8 @@ def main():
     dispatcher.add_handler(infor_handler)
     dispatcher.add_error_handler(error)
 
-    updater.start_polling()
-
+    updater.start_webhook(listen="O,O,O,O", port=int(PORT),url_path= Token)
+    updater.bot.set_webhook("https://fierce-caverns-17648.herokuapp.com/" + Token)
 
     updater.idle()
 
