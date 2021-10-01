@@ -40,6 +40,7 @@ def search(update: Update, context: CallbackContext):
                    f"Plot:\n{movie_info['plot']}\n\n" +
                    f"Starring:\n{movie_info['actors']}\n\n" +
                    f"Ratings:\n{rating_text}"
+                   f"Poster:\n{movie_info['poster']}\n\n"
                    )
     else:
         message = f"Moive '{movie_name} not found on the omdb site, Please check you spelling errors and try again"
