@@ -3,10 +3,10 @@ import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from dotenv import load_dotenv
 import os
-load_dotenv()
+from omdb import movie_infor
 
+load_dotenv()
 Token = os.getenv("Token")
-Movie_api = os.getenv("Movie_api")
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
@@ -22,8 +22,27 @@ def help_command(update: Update, context: CallbackContext) -> None:
 
 
 
-def rating(update: Update, context: CallbackContext):
-    update.message.reply_text("hELLO")
+def ratings(update: Update, context: CallbackContext):
+    movie_name = update.message.text
+    movie_info =movie_infor(movie_name)
+
+    message = ""
+
+    if movie_info:
+        rating_text = f"IMDb Rating: {movie_info['imdb_ratings']}\n"
+        for rating in movie_info['ratings']:
+            rating_text += f"{rating['Source']}: {rating['Value']}\n"
+
+        message = (f"{movie_info['title']} ({movie_info['year']}): \n\n" +
+                   f"Plot:\n{movie_info['plot']}\n\n" +
+                   f"Starring:\n{movie_info['actors']}\n\n" +
+                   f"Ratings:\n{rating_text}"
+                   )
+    else:
+        message = f"Moive '{movie_name} not found on the omdb site, Please check you spelling errors and try again"
+
+    update.message.reply_text(text=message)
+
 
 
 
@@ -35,10 +54,8 @@ def main():
 
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
-
-
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, obtener))
-    dispatcher.add_handler(CommandHandler("rating", rating))
+    ratings_handler = MessageHandler(Filters.text, ratings)
+    dispatcher.add_handler(ratings_handler)
 
     updater.start_polling()
 
