@@ -1,1 +1,2 @@
-web: python mov.py  
+heroku ps:scale worker=1
+worker: python mov.py  
