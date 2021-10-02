@@ -4,7 +4,6 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 from dotenv import load_dotenv
 import os
 from omdb import movie_infor
-PORT = int(os.environ.get('PORT',5000))
 
 load_dotenv()
 Token = os.getenv("Token")
