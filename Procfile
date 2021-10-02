@@ -1,1 +1,1 @@
-web:python3 mov.py  
+worker: python mov.py  
