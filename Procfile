@@ -1,2 +1,1 @@
-heroku ps:scale worker=1
-worker: python mov.py  
+worker: python3 mov.py  
